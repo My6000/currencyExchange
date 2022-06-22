@@ -3,8 +3,9 @@ const validate = /^\d*\.?\d*$/ ;
 
 let fromSelect = document.querySelector('#fromSelect')
      toSelect = document.querySelector('#toSelect')
-     // fromCountry = document.querySelector('#fromCountry')
-     //  toCountry = document.querySelector('#toCountry')
+     
+     fromCountry = document.querySelector('.fromCountry')
+      toCountry = document.querySelector('.toCountry')
 
      inputText = document.querySelector('#inputText')
 
@@ -12,7 +13,10 @@ let fromSelect = document.querySelector('#fromSelect')
      button = document.querySelector('button')
 
 
-     dateT = document.querySelector('.dateT')
+dateT = document.querySelector('.dateT')
+
+
+
 
 // get Curancy Names
 fetch('currencies.json')
@@ -22,6 +26,7 @@ fetch('currencies.json')
         fromSelect.innerHTML += `<option value="${key}">${key}</option>`
         toSelect.innerHTML += `<option value="${key}">${key}</option>`
 
+
     })
 })
 
@@ -30,15 +35,19 @@ fetch('currencies.json')
 
 
 button.addEventListener('click', changeCurancy)
+
+fromSelect.addEventListener('change', cuntryFrom)
 fromSelect.addEventListener('change', changeCurancy)
+
+toSelect.addEventListener('change', cuntryTo)
 toSelect.addEventListener('change', changeCurancy)
+
 inputText.addEventListener('input', changeCurancy)
 
 
 function changeCurancy(){
 
     if(fromSelect.value != "" && toSelect.value != "" ){
-        console.log("!= null")
         fetch(`https://v6.exchangerate-api.com/v6/69ffcf76730a1e7d2dd2f2ed/latest/${fromSelect.value}`)
         .then(res => res.json())
         .then(data => {
@@ -55,7 +64,6 @@ function changeCurancy(){
     })
 
     }else{
-        console.log("= null")
         result.innerHTML = "please select the currency ."
         result.style.color = "red"
     }
@@ -63,6 +71,27 @@ function changeCurancy(){
        
 }
 
+
+
+
+// display country name
+function cuntryFrom(){
+    fetch('currencies.json')
+    .then(res => res.json())
+    .then(data => {
+        fromCountry.innerHTML = data[fromSelect.value] 
+    }) 
+}
+
+
+
+function cuntryTo(){
+    fetch('currencies.json')
+    .then(res => res.json())
+    .then(data => {
+        toCountry.innerHTML = data[toSelect.value] 
+    }) 
+}
 
 
 
@@ -81,37 +110,3 @@ dateTime()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function changeCurancy(){
-//     fetch(`https://v6.exchangerate-api.com/v6/69ffcf76730a1e7d2dd2f2ed/latest/${fromSelect.value}`)
-//     .then(res => res.json())
-//     .then(data => {
-
-
-
-//        if(inputText.value = null){
-//             result.innerHTML = (inputText.value  * data.conversion_rates[toSelect.value]).toFixed(3) + " " + toSelect.value
-//        }else{
-//             result.innerHTML = ` 1 ${fromSelect.value} =   ${data.conversion_rates[toSelect.value]} ${toSelect.value}`
-//        }
-
-//     })
-// }

@@ -48,7 +48,7 @@ inputText.addEventListener('input', changeCurancy)
 function changeCurancy(){
 
     if(fromSelect.value != "" && toSelect.value != "" ){
-        fetch(`https://v6.exchangerate-api.com/v6/69ffcf76730a1e7d2dd2f2ed/latest/${fromSelect.value}`)
+        fetch(`https://v6.exchangerate-api.com/v6/ded9e1cc49300f93ee9aed63/latest/${fromSelect.value}`)
         .then(res => res.json())
         .then(data => {
         result.innerHTML = " - - - "

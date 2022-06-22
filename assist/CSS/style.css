@@ -1,0 +1,51 @@
+
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+
+    font-family: 'Helvetica', FontAwesome, sans-serif;
+    transition: all .3s;
+}
+
+
+body{
+    position: relative;
+    height: 100vh;
+
+    background-image: url(../Images/bg-image.jpg);
+    background-position: center;
+    background-size: cover;
+
+    overflow: hidden !important;
+
+    display: flex;
+    align-items: center;
+}
+
+body::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.11);
+    z-index: -1;
+}
+
+
+
+
+.mainCol{
+    /* background-color: #c7c6c699; */
+    background-color: #1b1b1b52;
+    border-radius: 20px;
+}
+
+
+
+input, select{
+    background-color: #1b1b1bb3;
+    color: wheat;
+}

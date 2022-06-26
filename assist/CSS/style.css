@@ -17,7 +17,7 @@ body{
     background-position: center;
     background-size: cover;
 
-    overflowx: hidden !important;
+    overflow-x: hidden !important;
 
     display: flex;
     align-items: center;

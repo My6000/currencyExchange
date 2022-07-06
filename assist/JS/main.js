@@ -22,12 +22,15 @@ dateT = document.querySelector('.dateT')
 fetch('currencies.json')
 .then(res => res.json())
 .then(data => {
-    Object.keys(data).forEach(key => {
+
+    for (let key in data){
+        // console.log(data[key])
+    // Object.keys(data).forEach(key => {
         fromSelect.innerHTML += `<option value="${key}">${key}</option>`
         toSelect.innerHTML += `<option value="${key}">${key}</option>`
 
 
-    })
+    }
 })
 
 
@@ -48,7 +51,7 @@ inputText.addEventListener('input', changeCurancy)
 function changeCurancy(){
 
     if(fromSelect.value != "" && toSelect.value != "" ){
-        fetch(`https://v6.exchangerate-api.com/v6/69ffcf76730a1e7d2dd2f2ed/latest/${fromSelect.value}`)
+        fetch(`https://v6.exchangerate-api.com/v6/ded9e1cc49300f93ee9aed63/latest/${fromSelect.value}`)
         .then(res => res.json())
         .then(data => {
         result.innerHTML = " - - - "
@@ -57,7 +60,7 @@ function changeCurancy(){
 
         
         if(inputText.value != ""  && inputText.value.match(validate)){
-            result.innerHTML = (inputText.value  * data.conversion_rates[toSelect.value]).toFixed(3) + " " + toSelect.value
+            result.innerHTML = `${inputText.value} ${fromSelect.value} = ${(inputText.value  * data.conversion_rates[toSelect.value]).toFixed(3)} ${toSelect.value} `
         }else{
             result.innerHTML = ` 1 ${fromSelect.value} =   ${data.conversion_rates[toSelect.value]} ${toSelect.value}`
         } 
@@ -108,5 +111,8 @@ setTimeout(dateTime, 1000)
 
 dateTime()
 
+
+
+// ------------------------------------------------------------------------------------------------------------
 
 
